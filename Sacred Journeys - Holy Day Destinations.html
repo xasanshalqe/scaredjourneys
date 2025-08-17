@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)file:///C:/Users/KCT/Documents/index.html -->
+<html lang="en" data-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacred Journeys - Holy Day Destinations</title>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --primary-color: #6c757d;
+            --secondary-color: #e9ecef;
+            --accent-color: #8e7cc3;
+            --card-bg: #ffffff;
+            --header-bg: #343a40;
+            --header-text: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --primary-color: #6c757d;
+            --secondary-color: #1e1e1e;
+            --accent-color: #9b89d1;
+            --card-bg: #1e1e1e;
+            --header-bg: #212529;
+            --header-text: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--header-text);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .search-container {
+            flex-grow: 1;
+            max-width: 600px;
+            margin: 0 2rem;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border-radius: 25px;
+            border: none;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        #theme-toggle {
+            background-color: transparent;
+            border: 1px solid var(--header-text);
+            color: var(--header-text);
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .notification-bell {
+            position: relative;
+            cursor: pointer;
+            color: var(--header-text);
+            font-size: 1.2rem;
+        }
+
+        .notification-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .notification-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 50px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--secondary-color);
+            border-radius: 8px;
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .notification-item {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .search-section {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .place-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .place-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .place-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .place-info {
+            padding: 1.5rem;
+        }
+
+        .place-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .place-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .place-description {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .place-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .holiday-type {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .search-container {
+                width: 100%;
+                margin: 1rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .places-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="file:///C:/Users/KCT/Documents/index.html#" class="logo">Sacred<span>Journeys</span></a>
+        
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search holy places...">
+        </div>
+        
+        <div class="header-controls">
+            <button id="theme-toggle">☀️</button>
+            
+            <div class="notification-bell" id="notification-bell">
+                🔔 <span class="notification-count" id="notification-count" style="display: block;">4</span>
+                <div class="notification-dropdown" id="notification-dropdown" style="display: none;"><div class="notification-item unread">
+                    <strong>New Destination</strong>
+                    <p>We've added new sacred sites in South America</p>
+                </div><div class="notification-item unread">
+                    <strong>New Destination</strong>
+                    <p>We've added new sacred sites in South America</p>
+                </div><div class="notification-item unread">
+                    <strong>Seasonal Alert</strong>
+                    <p>Special ceremonies happening this month at various locations</p>
+                </div><div class="notification-item unread">
+                    <strong>Travel Tip</strong>
+                    <p>Best times to visit holy sites to avoid crowds</p>
+                </div><div class="notification-item read">
+                    <strong>New Feature!</strong>
+                    <p>Check out our newly added pilgrimage sites</p>
+                </div><div class="notification-item read">
+                    <strong>Special Offer</strong>
+                    <p>20% discount on guided tours this month</p>
+                </div></div>
+            </div>
+            
+            <button id="login-btn">👤 Sign In</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Discover Sacred Places Around the World</h1>
+            <p>Explore the most spiritually significant destinations for your holy days and pilgrimages</p>
+        </section>
+        
+        <section class="search-section">
+            <h2>Find Your Spiritual Destination</h2>
+            <input type="text" id="main-search" placeholder="Search by location, religion, or holy day..." class="search-input">
+            
+            <div class="filter-options">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Christianity</button>
+                <button class="filter-btn">Islam</button>
+                <button class="filter-btn">Hinduism</button>
+                <button class="filter-btn">Buddhism</button>
+                <button class="filter-btn">Judaism</button>
+                <button class="filter-btn">Other</button>
+            </div>
+        </section>
+        
+        <h2>Featured Holy Places</h2>
+        <div class="places-grid" id="places-container"><div class="place-card">
+                    <img src="./Sacred Journeys - Holy Day Destinations_files/photo-1552832230-c0197dd311b5" alt="Vatican City" class="place-image">
+                    <div class="place-info">
+                        <h3 class="place-title">Vatican City</h3>
+                        <div class="place-location">📍 Rome, Italy</div>
+                        <p class="place-description">The center of the Catholic Church and home to St. Peter's Basilica and the Sistine Chapel.</p>
+                        <div class="place-footer">
+                            <span class="holiday-type">Christianity</span>
+                            <button>View Details</button>
+                        </div>
+                    </div>
+                </div><div class="place-card">
+                    <img src="./Sacred Journeys - Holy Day Destinations_files/photo-1566936737687-8f392a237b8b" alt="Mecca" class="place-image">
+                    <div class="place-info">
+                        <h3 class="place-title">Mecca</h3>
+                        <div class="place-location">📍 Saudi Arabia</div>
+                        <p class="place-description">The holiest city in Islam, destination for the Hajj pilgrimage.</p>
+                        <div class="place-footer">
+                            <span class="holiday-type">Islam</span>
+                            <button>View Details</button>
+                        </div>
+                    </div>
+                </div><div class="place-card">
+                    <img src="./Sacred Journeys - Holy Day Destinations_files/photo-1529107386315-e1a2ed48a620" alt="Varanasi" class="place-image">
+                    <div class="place-info">
+                        <h3 class="place-title">Varanasi</h3>
+                        <div class="place-location">📍 Uttar Pradesh, India</div>
+                        <p class="place-description">One of the oldest living cities in the world and a sacred place for Hindus.</p>
+                        <div class="place-footer">
+                            <span class="holiday-type">Hinduism</span>
+                            <button>View Details</button>
+                        </div>
+                    </div>
+                </div><div class="place-card">
+                    <img src="./Sacred Journeys - Holy Day Destinations_files/photo-1585506942812-0b7b987d6d1a" alt="Bodh Gaya" class="place-image">
+                    <div class="place-info">
+                        <h3 class="place-title">Bodh Gaya</h3>
+                        <div class="place-location">📍 Bihar, India</div>
+                        <p class="place-description">The site where Buddha attained enlightenment under the Bodhi tree.</p>
+                        <div class="place-footer">
+                            <span class="holiday-type">Buddhism</span>
+                            <button>View Details</button>
+                        </div>
+                    </div>
+                </div><div class="place-card">
+                    <img src="./Sacred Journeys - Holy Day Destinations_files/photo-1581447109200-bf2769116351" alt="Western Wall" class="place-image">
+                    <div class="place-info">
+                        <h3 class="place-title">Western Wall</h3>
+                        <div class="place-location">📍 Jerusalem, Israel</div>
+                        <p class="place-description">A sacred Jewish site, the last remnant of the Second Temple.</p>
+                        <div class="place-footer">
+                            <span class="holiday-type">Judaism</span>
+                            <button>View Details</button>
+                        </div>
+                    </div>
+                </div><div class="place-card">
+                    <img src="./Sacred Journeys - Holy Day Destinations_files/photo-1600189239005-66a300a214df" alt="Golden Temple" class="place-image">
+                    <div class="place-info">
+                        <h3 class="place-title">Golden Temple</h3>
+                        <div class="place-location">📍 Amritsar, India</div>
+                        <p class="place-description">The holiest Gurdwara of Sikhism, known for its stunning golden architecture.</p>
+                        <div class="place-footer">
+                            <span class="holiday-type">Sikhism</span>
+                            <button>View Details</button>
+                        </div>
+                    </div>
+                </div><div class="place-card">
+                    <img src="./Sacred Journeys - Holy Day Destinations_files/photo-1585409677983-0f6c41ca9c3b" alt="Mount Kailash" class="place-image">
+                    <div class="place-info">
+                        <h3 class="place-title">Mount Kailash</h3>
+                        <div class="place-location">📍 Tibet</div>
+                        <p class="place-description">Sacred mountain in four religions: Hinduism, Buddhism, Jainism, and Bon.</p>
+                        <div class="place-footer">
+                            <span class="holiday-type">Multi-religious</span>
+                            <button>View Details</button>
+                        </div>
+                    </div>
+                </div><div class="place-card">
+                    <img src="./Sacred Journeys - Holy Day Destinations_files/photo-1602002418816-5c0aeef426aa" alt="Lourdes" class="place-image">
+                    <div class="place-info">
+                        <h3 class="place-title">Lourdes</h3>
+                        <div class="place-location">📍 France</div>
+                        <p class="place-description">Famous Marian shrine where many claim to have experienced miraculous healings.</p>
+                        <div class="place-footer">
+                            <span class="holiday-type">Christianity</span>
+                            <button>View Details</button>
+                        </div>
+                    </div>
+                </div></div>
+    </main>
+
+    <div class="toast" id="toast" style="background-color: var(--accent-color); display: none;">New notification: New Destination</div>
+
+    <script>
+        // Sample data for holy places
+        const holyPlaces = [
+            {
+                id: 1,
+                title: "Vatican City",
+                location: "Rome, Italy",
+                image: "https://images.unsplash.com/photo-1552832230-c0197dd311b5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "The center of the Catholic Church and home to St. Peter's Basilica and the Sistine Chapel.",
+                type: "Christianity",
+                featured: true
+            },
+            {
+                id: 2,
+                title: "Mecca",
+                location: "Saudi Arabia",
+                image: "https://images.unsplash.com/photo-1566936737687-8f392a237b8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "The holiest city in Islam, destination for the Hajj pilgrimage.",
+                type: "Islam",
+                featured: true
+            },
+            {
+                id: 3,
+                title: "Varanasi",
+                location: "Uttar Pradesh, India",
+                image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "One of the oldest living cities in the world and a sacred place for Hindus.",
+                type: "Hinduism",
+                featured: true
+            },
+            {
+                id: 4,
+                title: "Bodh Gaya",
+                location: "Bihar, India",
+                image: "https://images.unsplash.com/photo-1585506942812-0b7b987d6d1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "The site where Buddha attained enlightenment under the Bodhi tree.",
+                type: "Buddhism",
+                featured: true
+            },
+            {
+                id: 5,
+                title: "Western Wall",
+                location: "Jerusalem, Israel",
+                image: "https://images.unsplash.com/photo-1581447109200-bf2769116351?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "A sacred Jewish site, the last remnant of the Second Temple.",
+                type: "Judaism",
+                featured: true
+            },
+            {
+                id: 6,
+                title: "Golden Temple",
+                location: "Amritsar, India",
+                image: "https://images.unsplash.com/photo-1600189239005-66a300a214df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "The holiest Gurdwara of Sikhism, known for its stunning golden architecture.",
+                type: "Sikhism",
+                featured: true
+            },
+            {
+                id: 7,
+                title: "Mount Kailash",
+                location: "Tibet",
+                image: "https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Sacred mountain in four religions: Hinduism, Buddhism, Jainism, and Bon.",
+                type: "Multi-religious",
+                featured: true
+            },
+            {
+                id: 8,
+                title: "Lourdes",
+                location: "France",
+                image: "https://images.unsplash.com/photo-1602002418816-5c0aeef426aa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
+                description: "Famous Marian shrine where many claim to have experienced miraculous healings.",
+                type: "Christianity",
+                featured: true
+            }
+        ];
+
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        
+        if (currentTheme === 'dark') {
+            themeToggle.textContent = '☀️';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            showToast('Switched to ' + (newTheme === 'dark' ? 'Dark' : 'Light') + ' Mode');
+        });
+
+        // Notification System
+        const notificationBell = document.getElementById('notification-bell');
+        const notificationDropdown = document.getElementById('notification-dropdown');
+        const notificationCount = document.getElementById('notification-count');
+        
+        let notifications = [
+            { id: 1, title: "New Feature!", text: "Check out our newly added pilgrimage sites", read: false },
+            { id: 2, title: "Special Offer", text: "20% discount on guided tours this month", read: false }
+        ];
+        
+        function updateNotificationBadge() {
+            const unreadCount = notifications.filter(n => !n.read).length;
+            notificationCount.textContent = unreadCount;
+            notificationCount.style.display = unreadCount > 0 ? 'block' : 'none';
+        }
+        
+        function renderNotifications() {
+            notificationDropdown.innerHTML = '';
+            
+            if (notifications.length === 0) {
+                notificationDropdown.innerHTML = '<div class="notification-item">No notifications</div>';
+                return;
+            }
+            
+            notifications.forEach(notification => {
+                const item = document.createElement('div');
+                item.className = `notification-item ${notification.read ? 'read' : 'unread'}`;
+                item.innerHTML = `
+                    <strong>${notification.title}</strong>
+                    <p>${notification.text}</p>
+                `;
+                item.addEventListener('click', () => {
+                    notification.read = true;
+                    updateNotificationBadge();
+                    renderNotifications();
+                });
+                notificationDropdown.appendChild(item);
+            });
+        }
+        
+        notificationBell.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notificationDropdown.style.display = notificationDropdown.style.display === 'block' ? 'none' : 'block';
+            
+            // Mark all as read when dropdown is opened
+            notifications.forEach(n => n.read = true);
+            updateNotificationBadge();
+        });
+        
+        document.addEventListener('click', () => {
+            notificationDropdown.style.display = 'none';
+        });
+        
+        // Simulate new notification every 30 seconds
+        setInterval(() => {
+            const newId = notifications.length > 0 ? Math.max(...notifications.map(n => n.id)) + 1 : 3;
+            const messages = [
+                { title: "New Destination", text: "We've added new sacred sites in South America" },
+                { title: "Seasonal Alert", text: "Special ceremonies happening this month at various locations" },
+                { title: "Travel Tip", text: "Best times to visit holy sites to avoid crowds" },
+                { title: "Cultural Event", text: "Upcoming religious festivals around the world" }
+            ];
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            
+            notifications.unshift({
+                id: newId,
+                title: randomMessage.title,
+                text: randomMessage.text,
+                read: false
+            });
+            
+            updateNotificationBadge();
+            renderNotifications();
+            showToast("New notification: " + randomMessage.title);
+            
+            // Show browser notification if permitted
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification("Sacred Journeys", {
+                    body: randomMessage.title + ": " + randomMessage.text
+                });
+            }
+        }, 30000);
+        
+        // Request notification permission
+        if ('Notification' in window) {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    showToast("Notifications enabled");
+                }
+            });
+        }
+        
+        // Search Functionality
+        const searchInput = document.getElementById('search-input');
+        const mainSearch = document.getElementById('main-search');
+        const placesContainer = document.getElementById('places-container');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        
+        function renderPlaces(places) {
+            placesContainer.innerHTML = '';
+            
+            if (places.length === 0) {
+                placesContainer.innerHTML = '<p>No places found matching your search.</p>';
+                return;
+            }
+            
+            places.forEach(place => {
+                const card = document.createElement('div');
+                card.className = 'place-card';
+                card.innerHTML = `
+                    <img src="${place.image}" alt="${place.title}" class="place-image">
+                    <div class="place-info">
+                        <h3 class="place-title">${place.title}</h3>
+                        <div class="place-location">📍 ${place.location}</div>
+                        <p class="place-description">${place.description}</p>
+                        <div class="place-footer">
+                            <span class="holiday-type">${place.type}</span>
+                            <button>View Details</button>
+                        </div>
+                    </div>
+                `;
+                placesContainer.appendChild(card);
+            });
+        }
+        
+        function filterPlaces() {
+            const searchTerm = mainSearch.value.toLowerCase();
+            const activeFilter = document.querySelector('.filter-btn.active').textContent;
+            
+            let filteredPlaces = holyPlaces;
+            
+            // Apply search filter
+            if (searchTerm) {
+                filteredPlaces = filteredPlaces.filter(place => 
+                    place.title.toLowerCase().includes(searchTerm) ||
+                    place.location.toLowerCase().includes(searchTerm) ||
+                    place.description.toLowerCase().includes(searchTerm) ||
+                    place.type.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            // Apply category filter
+            if (activeFilter !== 'All') {
+                filteredPlaces = filteredPlaces.filter(place => place.type === activeFilter);
+            }
+            
+            renderPlaces(filteredPlaces);
+        }
+        
+        // Event listeners for search and filters
+        mainSearch.addEventListener('input', filterPlaces);
+        searchInput.addEventListener('input', filterPlaces);
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filterPlaces();
+            });
+        });
+        
+        // Toast notifications
+        function showToast(message, type = "success") {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.backgroundColor = type === "error" ? "#e74c3c" : "var(--accent-color)";
+            toast.style.display = 'block';
+            
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Initialize
+        updateNotificationBadge();
+        renderNotifications();
+        renderPlaces(holyPlaces);
+        
+        // Simulate loading more places after delay
+        setTimeout(() => {
+            showToast("New holy places added to our collection!");
+        }, 5000);
+    </script>
+
+</body></html>
